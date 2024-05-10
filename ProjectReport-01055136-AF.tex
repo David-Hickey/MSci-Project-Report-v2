@@ -1,0 +1,132 @@
+%TODO
+%TODO KC1) more general abstract - not necessarily just CMP
+%TODO KC2) diagram of types of re-entry
+%TODO KC3) include PVs in diagram
+%TODO KC4) afterdepolarisation diagram
+%TODO KC5) advantages of CA
+%TODO TE1) check your words about rotor core slowdown make sense
+
+% TODO source/sink stuff
+% TODO fibres are reconstructions, which have same anisotropy but not much else
+% TODO zhao - how was obtained
+% TODO add start
+
+\documentclass[a4paper, 12pt]{report}
+
+\usepackage[a4paper, margin=2cm]{geometry}
+
+% Optionals
+\def\UrlBreaks{\do\/\do\-}
+\usepackage[numbers]{natbib}
+
+\usepackage{graphicx}
+\usepackage{standalone}
+\usepackage{float}
+\usepackage{hyperref}
+\usepackage{amsmath}
+\usepackage{textcomp}
+\usepackage{amssymb, gensymb}
+\usepackage{bbm}
+\usepackage{mathrsfs}
+\usepackage{tabularx}
+\usepackage{titlesec}
+\usepackage{xspace}
+\usepackage{subcaption}
+\usepackage{tikz}
+\usepackage{moreverb}
+\usepackage{nameref}
+\usepackage{csquotes}
+\usepackage{mdframed}
+\usepackage{tcolorbox}
+
+\setcounter{tocdepth}{1}
+
+\newcommand{\detailtexcount}[1]{%
+  \immediate\write18{texcount -merge -sum #1.tex > #1.wcdetail }%
+  \verbatiminput{#1.wcdetail}%
+}
+
+\newcommand{\texcount}[1]{%
+  \immediate\write18{expr `texcount -merge -sum -total -brief #1.tex` > #1.wcsimple}%
+  \input{#1.wcsimple}%
+}
+
+\newcommand{\etalcite}[2]{%
+    {#2}~\textit{et~al.}~\cite{#1}%
+}
+
+\usetikzlibrary{shapes,arrows,decorations.pathreplacing,decorations.markings,positioning,arrows.meta}
+\tikzstyle{decision} = [diamond, draw=black,thick, minimum width=4cm, minimum height=3cm, text centered, inner sep=0em]
+\tikzstyle{block} = [rectangle, draw=black,thick, text width=5em, text centered, minimum height=4em]
+\tikzstyle{line} = [draw=black,thick, -{Stealth}]
+
+\titleformat{\chapter}[block]
+	{\normalfont\Large\bfseries}{Chapter \thechapter:}{0.5em}{}
+\titlespacing*{\chapter}{0pt}{0pt}{20pt}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\rhead{}
+\lhead{\nouppercase{\leftmark}}
+\setlength{\headheight}{15pt}
+
+\numberwithin{equation}{chapter}
+\numberwithin{figure}{chapter}
+
+\graphicspath{{./graphics/}}
+
+\def\cmp{{Christensen-Manani-Peters}\xspace}
+\def\projectfilename{{ProjectReport-01055136-AF}}
+
+% This somehow ignores headers.
+%TC:macro \cite [ignore]
+%TC:macro \section [ignore]
+%TC:macro \chapter [ignore]
+%TC:macro \subsection [ignore]
+%TC:macro \subsubsection [ignore]
+
+\begin{document}
+
+% Don't count title page
+%TC:ignore	
+	\begin{titlepage}
+        \input{misc_titlepage.tex}
+	\end{titlepage}
+%TC:endignore
+
+
+	\begin{abstract}
+        \normalsize \input{ch0_abstract.tex}
+	\end{abstract}
+
+% Don't count contents page
+%TC:ignore	
+	\tableofcontents
+%TC:endignore
+
+	\chapter{Introduction} \label{ch:introduction}
+	\input{ch1_intro.tex}
+	
+	\chapter{Background} \label{ch:biologicalbackground}
+    \input{ch2_biologicalbackground.tex}
+		
+	\chapter{The \cmp Model} \label{ch:cmpmodel}
+	\input{ch3_cmpmodel.tex}
+	
+	\chapter{Generalisation to a Sheep Atrium} \label{ch:generalisation}
+	\input{ch4_sheepatrium.tex}
+
+	\chapter{Conclusions} \label{ch:conclusion}
+	\input{ch5_conclusion.tex}
+
+% Don't count anything after references
+%TC:ignore		
+	\chapter{References} \label{ch:regerences}
+	\bibliographystyle{naturemag}
+	\renewcommand{\chapter}[2]{}
+	\bibliography{bibliography}
+	
+% 	\detailtexcount{\projectfilename}
+%TC:endignore
+	
+\end{document}

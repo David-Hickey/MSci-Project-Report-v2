@@ -1,0 +1,38 @@
+\begin{tikzpicture}[node distance=5cm,align=center,auto]
+	\node[decision](start){What is the \\ state of the cell?};
+    \node[block, above of=start](realstart){Start};
+	\node[decision, below of=start, node distance=4.5cm](refractory){Has cell been \\ refractory for \\ $\tau$ timesteps?};
+	\node[decision, right of=start, node distance=5.5cm](excited){Are any excited \\ cells coupled \\ to this one?};
+	\node[decision, below of=excited, node distance=4.5cm](pacemaker){Is the cell \\ a pacemaker?};
+	\node[decision, below of=pacemaker, node distance=4.5cm](pacemakerperiod){Is the time \\ elapsed a \\ multiple of $T$?};
+	\node[decision, right of=pacemaker, node distance=5.5cm](defective){Is the cell \\ defective?};
+	\node[decision, below of=defective](defectivecheck){Generate a \\ random \\ uniform \\ $U \in [0, 1]$};
+	\node[block, below of=pacemakerperiod, node distance=4cm](excitedend){Excited};
+	\node[block, left of=excitedend, node distance=5.5cm](restingend){Resting};
+	\node[block, left of=restingend, node distance=3.0cm](refractoryend){Refractory};
+	\node[block, right of=excitedend, node distance=5.5cm](restingend2){Resting};
+	
+	\path[line](realstart)       -- (start);
+	\path[line](start)           -- node[very near start]{refractory} (refractory);
+	\path[line](refractory)      -| node[very near start]{no}         (refractoryend);
+	\path[line](refractory)      -- node[pos=0.05]{yes}        (restingend);
+	\path[line](start)           -- node[pos=0.3]{resting}    (excited);
+	\path[line](excited)         -- node[very near start]{no}         (pacemaker);
+	\path[line](pacemaker)       -- node[very near start]{yes}        (pacemakerperiod);
+	\path[line](pacemaker.west) -| node[above, very near start]{no} ++(-0.6, 0) |- (restingend);
+	\path[line](excited)         -| node[pos=0.05]{yes}        (defective);
+	\path[line](defective)       -- node[very near start]{yes}        (defectivecheck);
+	\path[line](defective.west) -| node[above, very near start]{no} ++(-1.05, 0) |-         (excitedend);
+	\path[line](defectivecheck)  -- node[very near start]{$U < \epsilon$}         (restingend2);
+	\path[line](defectivecheck.west) -| node[above, pos=0.2]{$U \ge \epsilon$} ++(-1.05, 0) |- (excitedend);
+	\path[line](pacemakerperiod) -- node[very near start]{yes}        (excitedend);		
+	\path[line](pacemakerperiod.west) -| node[above, very near start]{no} ++(-0.6, 0) |- (restingend);
+	\path[line](start)           -| node[above, pos=0.3]{excited}    (refractoryend);
+	
+	\path[line] (defective.west) -- ++(-1.05, 0);
+	\path[line] (defectivecheck.west) -- ++(-1.05, 0);
+	\path[line] (pacemaker.west) -- ++(-0.6, 0);
+	\path[line] (pacemakerperiod.west) -- ++(-0.6, 0);
+	\path[line] (refractory.west) -- ++(-1.00, 0);
+	\path[line] (start.west) -- ++(-1.00, 0);
+\end{tikzpicture}

@@ -1,0 +1,27 @@
+We have successfully adapted the work of \etalcite{cmp}{Christensen} to a more realistic topology provided by \etalcite{zhao}{Zhao}. We found that our adaptation reproduces the core features of the CMP model, such as the dependence of AF risk on fibrosis with differences that can be explained by the changed structure. We found that our model shows anisotropy of conduction velocities and is qualitatively different from an isotropic null model. We also found that our model successfully identifies regions such as the pulmonary veins where clinical observations suggest are common substrates for re-entry circuits.
+
+This is an important step towards developing the \cmp model into a useful tool that, with further work, may be possible to use in a clinical setting. We hope to present a summary of our work and results in the Computing in Cardiology 2019 conference.
+
+
+\section{Limitations and Further Work}
+
+This work is based only on a single sheep heart, so it is possible that other sheep hearts or human hearts would not reproduce these results. An obvious piece of further study would be to reproduce our results using a different fibre map.
+We have also assumed uniform fibre density, conduction velocity, and fibrosis. However this is not reflective of the real heart~\cite{alonso2016nonlinear} and a fibre map that included this data would therefore be of interest.
+
+Previous work with the CMP model has found that applying machine learning to an electrocardiogram (commonly called an ECG) can pinpoint a re-entry circuit with high accuracy~\cite{mcgillivray2018machine}. If this work were adapted to this more realistic geometry, it would be one step closer to being applicable in a clinical setting.
+
+Centrality was effective on the CMP model, but not on the more realistic geometry. However, in this model re-entry circuits form around gaps in the fibre map (representing anatomical obstacles), so searching directly for gaps might prove a useful way to work out where re-entry circuits could form in a given fibre map.
+
+At the coarse-graining levels used to gather statistics for the model ($g=6$), a voxel is $300~\mathrm{\mu m} \times 300~\mathrm{\mu m} \times 300~\mathrm{\mu m}$. The resolution of MRI when mapping heart fibres is approximately $1000 - 3000~\mathrm{\mu m}$ in clinical settings~\cite{mori2006principles} due to the motion of the heart. This means that our model is untested at a coarse-graining that is clinically attainable, so we can't conclude whether the model could be personalised for each patient. However, if further study concludes that these results hold at a lower resolution then personalised ablation patterns could be determined in mere minutes using consumer-grade hardware.
+
+
+%TC:ignore
+\clearpage
+\section*{Acknowledgements}
+
+Thank you to Dr. Nick Peters, Dr. Kishan Manani and Prof. Kim Christensen for developing the original \cmp model. Especially thank you to Prof. Christensen for supervising and guiding this project. Thank you to Max Falkenberg for support and feedback, and helping us write a manuscript to submit to a conference. Thank you to Alberto Ciacci for support and feedback. Thank you to Jichao Zhao for providing the fibre map. Thank you to Dr. Tim Evans for his comments and feedback. Thank you to my friends and family for their time spent providing feedback on this report. And a special thank you to my project partner for being a true collaborator and always having a relevant paper at the ready.
+
+% \section*{Code Listings}
+
+% All code can be 
+%TC:endignore

@@ -1,0 +1,33 @@
+Atrial fibrillation (AF) is the most common heart rhythm disorder~\cite{narayan2012treatment}, and causes parts of the heart to spasm (or `fibrillate') instead of contracting effectively~\cite{nattel}. It affects predominantly the elderly~\cite{wasmer2017predisposing}. As of 2010 it affected 8.8 million people over the age of 50 in the EU, and this number is expected to double by 2050~\cite{krijthe2013projections}. AF causes a five-fold increase in stroke risk, is responsible for 25\% of strokes in people over the age of 80~\cite{wolf1991probability}, and the strokes caused by AF are more severe than strokes from other causes~\cite{miller2005cost}. The direct cost of AF to the NHS was \pounds 459~million in 2000~\cite{stewart2004cost}. 
+Typically treatments take the form of surgical interventions, but as AF has poorly-understood mechanisms these surgical interventions have a high risk of complications and a low success rate~\cite{deshmukh2013hospital, cappato2005worldwide}.
+
+The \cmp (CMP) model is a simple model of AF. It treats the heart as a two-dimensional discrete square lattice, where each site represents a heart cell. The state of each cell evolves over time, controlled by a set of simple rules which are based on the behaviour of real heart cells. These simple rules enable fibrillation to arise spontaneously~\cite{cmp}.
+	
+\section{Aims and Objectives}
+
+In this work, we create a computational model of AF based on information about the cardiac muscle configuration (a `fibre map') of a real sheep heart, in which heart cells act based on the rules defined by the CMP model. Our specific aims are as follows:
+\begin{enumerate}
+    \item Demonstrate the feasibility of generalising the CMP model to a more realistic three-dimensional anatomy based on a sheep heart. We intend to move away from the lattice structure imposed by the CMP model, and towards a complex network structure possessing large-scale structural anisotropy reflective of a real sheep heart. We hope to verify that the core results of the original model are preserved in this generalisation.
+    \item Determine the spatial distribution of electrical anomalies that drive AF and compare to the clinically measured distribution.
+    \item Find computationally efficient ways to locate these electrical anomalies.
+    \item Assess future clinical applications of this model, with a focus on whether this model can guide surgical interventions to improve their efficacy.
+\end{enumerate}
+
+\section{Related Works}
+
+This project builds on or extends several related works:
+\begin{itemize}
+    \item \etalcite{cmp}{Christensen} defined the simple rules for cell behaviour that we adapt to a more complex geometry. 
+    \item \etalcite{zhao}{Zhao} produced the fibre map from a sheep heart, which we are using to guide the creation of this geometry. They also designed a model of atrial fibrillation, but modelled the heart as a continuum in which electrical impulses are conducted with anisotropic propagation speeds. In comparison, our approach phenomenologically models individual cells.
+    % \item The Master's thesis of Menkus~\cite{menkus} also built on this atrial fibre map but retained the discrete lattice structure of the CMP model; we discard this constraint, thereby solving several issues in the way electrical signals travel through the atrium.
+\end{itemize}
+
+\section{Report Outline}
+
+The outline of the remainder of this report is as follows:
+\begin{description}
+    \item[Ch. \ref{ch:biologicalbackground}: \nameref{ch:biologicalbackground}] summarises the biology necessary to understand the rules behind the modelling process. It ends with a brief summary of some of the modelling approaches that have been used to study AF.
+    \item[Ch. \ref{ch:cmpmodel}: \nameref{ch:cmpmodel}] describes the simple model of AF developed by \etalcite{cmp}{Christensen}. It also describes the extensions we have made to this simple model in preparation for our generalised model.
+    \item[Ch. \ref{ch:generalisation}: \nameref{ch:generalisation}] details our work generalising the \cmp model to a more realistic substrate. Our procedure to create the substrate for our generalised model is explained and justified. The results shown by our model are shown and discussed, with a focus on whether they are consistent with AF in real hearts. This chapter represents the bulk of the novel work in this project.
+    \item[Ch. \ref{ch:conclusion}: \nameref{ch:conclusion}] summarises our findings and discusses the clinical implications of our model. The limitations and future research potential for our model are considered.
+\end{description}
